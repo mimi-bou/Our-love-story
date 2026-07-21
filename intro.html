@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>for us ❤️</title>
+
+<style>
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+}
+
+body{
+
+background:black;
+
+color:white;
+
+font-family:Georgia,serif;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+.container{
+
+width:80%;
+
+max-width:850px;
+
+}
+
+#text{
+
+font-size:28px;
+
+line-height:1.8;
+
+white-space:pre-wrap;
+
+color:#ffd6e7;
+
+text-shadow:0 0 12px #ff6b9d;
+
+min-height:320px;
+
+}
+
+#cursor{
+
+display:inline-block;
+
+width:3px;
+
+background:#ff6b9d;
+
+margin-left:4px;
+
+animation:blink .8s infinite;
+
+height:30px;
+
+vertical-align:bottom;
+
+}
+
+@keyframes blink{
+
+0%{
+
+opacity:1;
+
+}
+
+50%{
+
+opacity:0;
+
+}
+
+100%{
+
+opacity:1;
+
+}
+
+}
+
+#continueBtn{
+
+margin-top:50px;
+
+padding:16px 34px;
+
+font-size:20px;
+
+background:transparent;
+
+color:#ff6b9d;
+
+border:2px solid #ff6b9d;
+
+border-radius:40px;
+
+cursor:pointer;
+
+display:none;
+
+transition:.4s;
+
+}
+
+#continueBtn:hover{
+
+background:#ff6b9d;
+
+color:black;
+
+box-shadow:0 0 25px #ff6b9d;
+
+transform:scale(1.05);
+
+}
+
+.fadeIn{
+
+animation:fade 1.5s forwards;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="text">
+
+<span id="typing"></span><span id="cursor"></span>
+
+</div>
+
+<button id="continueBtn">
+
+Continue ❤️
+
+</button>
+
+</div>
+
+<script>
+
+// =========================
+// YOUR MESSAGE
+// =========================
+
+const message = `I know you might be confused on what this is
+
+It's a website I made where we can store things like letters or pictures
+
+I made this not only for you...
+
+but for us.
+
+I hope it means a lot to you.
+
+Once you're ready, you can click Continue below so you can read our first anniversary letter that I've written for you.
+
+I love you so much baby. 
+
+-Lamis ❤️`;
+
+const typing = document.getElementById("typing");
+const button = document.getElementById("continueBtn");
+
+let index = 0;
+let finished = false;
+
+let fastMode = false;
+
+function playKey(){
+
+const keySound = new Audio("https://actions.google.com/sounds/v1/foley/typewriter_key.ogg");
+
+keySound.volume = 0.25;
+
+function playKey(){
+
+keySound.currentTime = 0;
+
+keySound.play();
+
+}
+
+}
+
+function type(){
+
+if(index >= message.length){
+
+finished = true;
+
+document.getElementById("cursor").style.display = "none";
+
+button.style.display = "inline-block";
+
+button.style.opacity = "0";
+
+setTimeout(function(){
+
+button.style.transition = "1.5s";
+
+button.style.opacity = "1";
+
+},100);
+
+button.classList.add("fadeIn");
+
+const ding = new Audio("https://actions.google.com/sounds/v1/foley/typewriter_bell.ogg");
+
+ding.volume = 0.35;
+
+ding.play();
+
+return;
+
+}
+
+typing.innerHTML += message.charAt(index);
+
+if(message.charAt(index)!==" " && message.charAt(index)!=="\n"){
+
+playKey();
+
+}
+
+index++;
+
+let speed = fastMode ? 6 : 42;
+
+if(!fastMode){
+
+if(message.charAt(index-1)===".") speed = 700;
+
+if(message.charAt(index-1)==="!") speed = 700;
+
+if(message.charAt(index-1)===",") speed = 250;
+
+if(message.charAt(index-1)==="\n") speed = 900;
+
+}
+
+setTimeout(type,speed);
+
+}
+
+type();
+
+document.body.addEventListener("click",function(){
+
+if(finished) return;
+
+fastMode = true;
+
+});
+
+</script>
+
+<script>
+
+// =========================
+// CONTINUE BUTTON
+// =========================
+
+button.addEventListener("click", function(){
+
+document.body.style.transition = "opacity 1.2s";
+
+document.body.style.opacity = "0";
+
+setTimeout(function(){
+
+window.location.href = "letter.html";
+
+},1200);
+
+});
+
+</script>
+
+</body>
+
+</html>
