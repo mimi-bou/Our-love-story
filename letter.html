@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Anniversary ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#000;
+font-family:Georgia,serif;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+
+}
+
+/* ---------- CARD ---------- */
+
+#card{
+
+position:relative;
+
+width:340px;
+height:470px;
+
+transform-style:preserve-3d;
+perspective:1800px;
+
+}
+
+/* Front cover */
+
+#front{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:linear-gradient(145deg,#5b0013,#7d0019,#8f0022);
+
+border-radius:14px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+box-shadow:
+0 0 45px rgba(255,80,130,.18),
+0 25px 60px rgba(0,0,0,.55);
+
+transition:1.4s;
+
+transform-origin:left;
+
+backface-visibility:hidden;
+
+z-index:5;
+
+}
+
+#front::before{
+
+content:"";
+
+position:absolute;
+
+top:18px;
+left:18px;
+right:18px;
+bottom:18px;
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:10px;
+
+}
+
+/* Cover text */
+
+.small{
+
+color:#ffd9e4;
+
+font-size:24px;
+
+letter-spacing:1px;
+
+}
+
+.name{
+
+margin:18px 0;
+
+font-size:40px;
+
+color:white;
+
+text-shadow:0 0 12px rgba(255,180,200,.4);
+
+}
+
+.heart{
+
+font-size:30px;
+
+margin:12px;
+
+color:#ff9fbc;
+
+}
+
+/* Open button */
+
+#openCard{
+
+margin-top:55px;
+
+padding:14px 36px;
+
+background:transparent;
+
+border:2px solid #ff9fbc;
+
+border-radius:40px;
+
+color:#ff9fbc;
+
+font-size:19px;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+#openCard:hover{
+
+background:#ff9fbc;
+
+color:#2d0010;
+
+transform:scale(1.05);
+
+box-shadow:0 0 18px #ff9fbc;
+
+}
+
+/* ---------- INSIDE OF CARD ---------- */
+
+#inside{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:#f7efe3;
+
+border-radius:14px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+overflow:hidden;
+
+box-shadow:0 25px 60px rgba(0,0,0,.4);
+
+}
+
+/* ---------- ENVELOPE ---------- */
+
+#envelope{
+
+position:relative;
+
+width:250px;
+height:160px;
+
+cursor:pointer;
+
+opacity:0;
+
+transform:translateY(30px);
+
+transition:1s;
+
+}
+
+/* Back */
+
+#back{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:#efe1c5;
+
+border-radius:6px;
+
+}
+
+/* Left triangle */
+
+#leftFold{
+
+position:absolute;
+
+width:0;
+height:0;
+
+border-top:80px solid transparent;
+border-bottom:80px solid transparent;
+border-right:125px solid #e5d3b2;
+
+left:0;
+
+}
+
+/* Right triangle */
+
+#rightFold{
+
+position:absolute;
+
+width:0;
+height:0;
+
+border-top:80px solid transparent;
+border-bottom:80px solid transparent;
+border-left:125px solid #e5d3b2;
+
+right:0;
+
+}
+
+/* Bottom triangle */
+
+#bottomFold{
+
+position:absolute;
+
+bottom:0;
+
+width:0;
+height:0;
+
+border-left:125px solid transparent;
+border-right:125px solid transparent;
+border-bottom:80px solid #e0ccaa;
+
+}
+
+/* Flap */
+
+#flap{
+
+position:absolute;
+
+top:0;
+
+width:0;
+height:0;
+
+border-left:125px solid transparent;
+border-right:125px solid transparent;
+border-top:80px solid #d8c19d;
+
+transform-origin:top;
+
+transition:1.2s;
+
+z-index:10;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="card">
+
+<div id="inside">
+
+<div id="envelope">
+
+<div id="back"></div>
+
+<div id="leftFold"></div>
+
+<div id="rightFold"></div>
+
+<div id="bottomFold"></div>
+
+<div id="flap"></div>
+
+</div>
+
+</div>
+
+<div id="front">
+
+<div class="heart">♡</div>
+
+<div class="small">From</div>
+
+<div class="name">Lamis</div>
+
+<div class="small">to</div>
+
+<div class="name">Bilal</div>
+
+<div class="heart">♡</div>
+
+<button id="openCard">
+
+Open
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- LETTER PAPER -->
+<!-- ========================= -->
+
+<div id="paper">
+
+<div class="page active">
+
+<h2>Our First Anniversary ❤️</h2>
+
+<p>
+
+ANNIVERSARY LETTER
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const front = document.getElementById("front");
+const envelope = document.getElementById("envelope");
+const flap = document.getElementById("flap");
+const paper = document.getElementById("paper");
+
+document.getElementById("openCard").onclick=function(){
+
+/* Open the greeting card */
+
+front.style.transform="rotateY(-165deg)";
+
+front.style.boxShadow="none";
+
+/* Envelope fades in */
+
+setTimeout(function(){
+
+envelope.style.opacity="1";
+
+envelope.style.transform="translateY(0px)";
+
+},850);
+
+};
+
+/* Click the envelope */
+
+envelope.onclick=function(){
+
+envelope.style.pointerEvents="none";
+
+/* Envelope moves forward */
+
+envelope.animate([
+
+{
+
+transform:"translateY(0px) scale(1)"
+
+},
+
+{
+
+transform:"translateY(-18px) scale(1.03)"
+
+}
+
+],{
+
+duration:500,
+
+fill:"forwards"
+
+});
+
+/* Flap opens */
+
+setTimeout(function(){
+
+flap.style.transform="rotateX(180deg)";
+
+},500);
+
+/* Paper appears and slides out */
+
+setTimeout(function(){
+
+paper.style.display="block";
+
+paper.animate([
+
+{
+
+opacity:0,
+
+transform:"translateY(140px) scale(.45)"
+
+},
+
+{
+
+opacity:1,
+
+transform:"translateY(0px) scale(1)"
+
+}
+
+],{
+
+duration:1300,
+
+fill:"forwards",
+
+easing:"ease"
+
+});
+
+},1200);
+
+/* Hide the envelope once the paper is out */
+
+setTimeout(function(){
+
+envelope.style.opacity="0";
+
+},1600);
+
+};
+
+</script>
+
+<style>
+
+/* ========================= */
+/* PAPER */
+/* ========================= */
+
+#paper{
+
+display:none;
+
+position:absolute;
+
+width:min(92vw,700px);
+
+height:min(88vh,920px);
+
+background:#fff8ea;
+
+color:#222;
+
+padding:55px;
+
+border-radius:5px;
+
+box-shadow:0 25px 70px rgba(0,0,0,.6);
+
+overflow:hidden;
+
+z-index:20;
+
+}
+
+.page{
+
+font-size:16px;
+
+line-height:1.85;
+
+}
+
+.page h2{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#650018;
+
+font-size:28px;
+
+}
+
+.page p{
+
+white-space:pre-wrap;
+
+}
+
+</style> <!-- ========================= -->
+<!-- LETTER PAPER -->
+<!-- ========================= -->
+
+<div id="paper">
+
+<div class="page active">
+
+<h2>Our First Anniversary ❤️</h2>
+
+<p>
+
+ANNIVERSARY LETTER
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const front = document.getElementById("front");
+const envelope = document.getElementById("envelope");
+const flap = document.getElementById("flap");
+const paper = document.getElementById("paper");
+
+document.getElementById("openCard").onclick=function(){
+
+/* Open the greeting card */
+
+front.style.transform="rotateY(-165deg)";
+
+front.style.boxShadow="none";
+
+/* Envelope fades in */
+
+setTimeout(function(){
+
+envelope.style.opacity="1";
+
+envelope.style.transform="translateY(0px)";
+
+},850);
+
+};
+
+/* Click the envelope */
+
+envelope.onclick=function(){
+
+envelope.style.pointerEvents="none";
+
+/* Envelope moves forward */
+
+envelope.animate([
+
+{
+
+transform:"translateY(0px) scale(1)"
+
+},
+
+{
+
+transform:"translateY(-18px) scale(1.03)"
+
+}
+
+],{
+
+duration:500,
+
+fill:"forwards"
+
+});
+
+/* Flap opens */
+
+setTimeout(function(){
+
+flap.style.transform="rotateX(180deg)";
+
+},500);
+
+/* Paper appears and slides out */
+
+setTimeout(function(){
+
+paper.style.display="block";
+
+paper.animate([
+
+{
+
+opacity:0,
+
+transform:"translateY(140px) scale(.45)"
+
+},
+
+{
+
+opacity:1,
+
+transform:"translateY(0px) scale(1)"
+
+}
+
+],{
+
+duration:1300,
+
+fill:"forwards",
+
+easing:"ease"
+
+});
+
+},1200);
+
+/* Hide the envelope once the paper is out */
+
+setTimeout(function(){
+
+envelope.style.opacity="0";
+
+},1600);
+
+};
+
+</script>
+
+<style>
+
+/* ========================= */
+/* PAPER */
+/* ========================= */
+
+#paper{
+
+display:none;
+
+position:absolute;
+
+width:min(92vw,700px);
+
+height:min(88vh,920px);
+
+background:#fff8ea;
+
+color:#222;
+
+padding:55px;
+
+border-radius:5px;
+
+box-shadow:0 25px 70px rgba(0,0,0,.6);
+
+overflow:hidden;
+
+z-index:20;
+
+}
+
+.page{
+
+font-size:16px;
+
+line-height:1.85;
+
+}
+
+.page h2{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#650018;
+
+font-size:28px;
+
+}
+
+.page p{
+
+white-space:pre-wrap;
+
+}
+
+</style>
